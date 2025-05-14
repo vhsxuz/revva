@@ -1,26 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:revva/routes/route.dart';
 import 'firebase/firebase_options.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:get/get.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+
+  final prefs = await SharedPreferences.getInstance();
+  final onboardingCompleted = prefs.getBool('onboarding_completed') ?? false;
+
+  runApp(MyApp(onboardingCompleted: onboardingCompleted));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool onboardingCompleted;
+
+  const MyApp({super.key, required this.onboardingCompleted});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+    return GetMaterialApp(
+      title: 'Revva',
+      debugShowCheckedModeBanner: false,
+      // Essential routing configurations:
+      initialRoute: Routes.ONBOARDING,
+      getPages: AppPages.routes,
+      unknownRoute: GetPage(
+        name: '/notfound',
+        page: () => Scaffold(
+          body: Center(child: Text('Page not found')),
+        ),
       ),
-      home: const Scaffold(),
     );
   }
 }
