@@ -25,7 +25,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Revva',
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.OTP,
+      // Essential routing configurations:
+      initialRoute: Routes.ONBOARDING,
       getPages: AppPages.routes,
       unknownRoute: GetPage(
         name: '/notfound',
