@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -26,20 +26,9 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget titleText() {
-    return Text("Login", style: TextStyle(fontSize: 20, color: Colors.white));
-  }
-
-  Widget forgotPasswordText() {
-    return Align(
-      alignment: Alignment.centerRight,
-      child: Text(
-        "Forgot Password?",
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 12,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
+    return Text(
+      "Register",
+      style: TextStyle(fontSize: 20, color: Colors.white),
     );
   }
 
@@ -54,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
         onPressed: () {},
         child: const Text(
-          'Sign In',
+          'Sign Up',
           style: TextStyle(color: Color(0xff1B232A)),
         ),
       ),
@@ -74,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget googleLoginButton() {
+  Widget googleRegisterButton() {
     return SizedBox(
       height: 52,
       width: double.infinity,
@@ -100,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
               child: Align(
                 alignment: Alignment.center,
                 child: Text(
-                  'Login with Google',
+                  'Sign Up with Google',
                   style: TextStyle(color: Color(0xff1B232A)),
                 ),
               ),
@@ -111,18 +100,18 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget registerRow() {
+  Widget loginRow() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Text(
-          'Don’t have account? ',
+          'Already have an account? ',
           style: TextStyle(color: Colors.white),
         ),
         const SizedBox(width: 2),
         GestureDetector(
           child: const Text(
-            'Register',
+            'Sign In',
             style: TextStyle(
               color: Color(0xFF4280EF),
               fontWeight: FontWeight.bold,
@@ -153,15 +142,13 @@ class _LoginPageState extends State<LoginPage> {
                 label: "Password",
                 controller: passwordController,
               ),
-              forgotPasswordText(),
-              const SizedBox(height: 40),
               signInButton(),
               const SizedBox(height: 40),
               orDivider(),
               const SizedBox(height: 40),
-              googleLoginButton(),
+              googleRegisterButton(),
               const SizedBox(height: 40),
-              registerRow(),
+              loginRow(),
             ],
           ),
         ),
