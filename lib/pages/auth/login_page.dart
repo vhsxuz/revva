@@ -29,6 +29,20 @@ class _LoginPageState extends State<LoginPage> {
     return Text("Login", style: TextStyle(fontSize: 20, color: Colors.white));
   }
 
+  Widget forgotPasswordText() {
+    return Align(
+      alignment: Alignment.centerRight,
+      child: Text(
+        "Forgot Password?",
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 12,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
+
   Widget signInButton() {
     return SizedBox(
       height: 52,
@@ -139,6 +153,8 @@ class _LoginPageState extends State<LoginPage> {
                 label: "Password",
                 controller: passwordController,
               ),
+              forgotPasswordText(),
+              const SizedBox(height: 40),
               signInButton(),
               const SizedBox(height: 40),
               orDivider(),
