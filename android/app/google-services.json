@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "1083835846164",
+    "project_id": "sample-project-ceba1",
+    "storage_bucket": "sample-project-ceba1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1083835846164:android:600580af39bada94936101",
+        "android_client_info": {
+          "package_name": "com.example.revva"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1083835846164-vc98uqugp96q5o9t15i0eu5nsg26ka93.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1TR8fmv_qrvOquK4aH--tGSDCSoXrpQY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1083835846164-vc98uqugp96q5o9t15i0eu5nsg26ka93.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1083835846164-cjlhkjfebstkva96t9169gvj97p7dsdp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.tugas12Firebase"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1083835846164:android:4976a636fa3f65e9936101",
+        "android_client_info": {
+          "package_name": "com.example.tugas_12_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1083835846164-vc98uqugp96q5o9t15i0eu5nsg26ka93.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1TR8fmv_qrvOquK4aH--tGSDCSoXrpQY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1083835846164-vc98uqugp96q5o9t15i0eu5nsg26ka93.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1083835846164-cjlhkjfebstkva96t9169gvj97p7dsdp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.tugas12Firebase"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
