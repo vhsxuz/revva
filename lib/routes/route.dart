@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:revva/pages/onboarding/onboarding_page_1.dart';
+import 'package:revva/pages/onboarding/onboarding_screen.dart';
 
 abstract class Routes {
   static const ONBOARDING = '/onboarding';
@@ -11,7 +11,7 @@ class AppPages {
   static final routes = [
     GetPage(
       name: Routes.ONBOARDING,
-      page: () => const OnboardingPage1(),
+      page: () => OnboardingScreen(),
       transition: Transition.cupertino,
     ),
     // Other pages...
