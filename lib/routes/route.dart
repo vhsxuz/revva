@@ -4,7 +4,10 @@ import 'package:revva/pages/auth/login_page.dart';
 import 'package:revva/pages/news/news.dart';
 import 'package:revva/pages/auth/otp_page.dart';
 import 'package:revva/pages/auth/register_page.dart';
+import 'package:revva/pages/error/error_page.dart';
+import 'package:revva/pages/notavailable/not_available_page.dart';
 import 'package:revva/pages/onboarding/onboarding_screen.dart';
+import 'package:revva/pages/promotion/promotion_page.dart';
 
 abstract class Routes {
   static const ONBOARDING = '/onboarding';
@@ -14,6 +17,9 @@ abstract class Routes {
   static const REGISTER = '/register';
   static const NEWS = '/news';
   static const OTP = '/otp';
+  static const ERRORPAGE = '/errorpage';
+  static const NOTAVAILABLE = '/notavailable';
+  static const PROMOTION = '/promotion';
   // Other pages...
 }
 
@@ -49,6 +55,20 @@ class AppPages {
       page: () => const News(),
       transition: Transition.cupertino,
     ),
+      name: Routes.ERRORPAGE, 
+      page: () => ErrorPage(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: Routes.NOTAVAILABLE, 
+      page: () => NotAvailablePage(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: Routes.PROMOTION, 
+      page: () => PromotionPage(),
+      transition: Transition.cupertino,
+    )
     // Other pages...
   ];
 }
