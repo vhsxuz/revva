@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 import 'package:revva/pages/auth/forgot_password_page.dart';
 import 'package:revva/pages/auth/login_page.dart';
 import 'package:revva/pages/news/news.dart';
+import 'package:revva/pages/auth/otp_page.dart';
+import 'package:revva/pages/auth/register_page.dart';
 import 'package:revva/pages/onboarding/onboarding_screen.dart';
 
 abstract class Routes {
@@ -11,6 +13,7 @@ abstract class Routes {
   static const FORGOTPASSWORD = '/forgot-password';
   static const REGISTER = '/register';
   static const NEWS = '/news';
+  static const OTP = '/otp';
   // Other pages...
 }
 
@@ -29,6 +32,16 @@ class AppPages {
     GetPage(
       name: Routes.FORGOTPASSWORD,
       page: () => const ForgotPasswordPage(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: Routes.REGISTER,
+      page: () => const RegisterPage(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: Routes.OTP,
+      page: () => const OtpPage(),
       transition: Transition.cupertino,
     ),
     GetPage(
