@@ -7,9 +7,7 @@ import 'package:get/get.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   final prefs = await SharedPreferences.getInstance();
   final onboardingCompleted = prefs.getBool('onboarding_completed') ?? false;
@@ -31,9 +29,7 @@ class MyApp extends StatelessWidget {
       getPages: AppPages.routes,
       unknownRoute: GetPage(
         name: '/notfound',
-        page: () => Scaffold(
-          body: Center(child: Text('Page not found')),
-        ),
+        page: () => Scaffold(body: Center(child: Text('Page not found'))),
       ),
     );
   }
