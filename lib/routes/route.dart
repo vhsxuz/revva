@@ -4,6 +4,7 @@ import 'package:revva/pages/auth/login_page.dart';
 import 'package:revva/pages/auth/otp_page.dart';
 import 'package:revva/pages/auth/register_page.dart';
 import 'package:revva/pages/error/error_page.dart';
+import 'package:revva/pages/notavailable/not_available_page.dart';
 import 'package:revva/pages/onboarding/onboarding_screen.dart';
 
 abstract class Routes {
@@ -14,6 +15,7 @@ abstract class Routes {
   static const REGISTER = '/register';
   static const OTP = '/otp';
   static const ERRORPAGE = '/errorpage';
+  static const NOTAVAILABLE = '/notavailable';
   // Other pages...
 }
 
@@ -47,6 +49,11 @@ class AppPages {
     GetPage(
       name: Routes.ERRORPAGE, 
       page: () => ErrorPage(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: Routes.NOTAVAILABLE, 
+      page: () => NotAvailablePage(),
       transition: Transition.cupertino,
     )
     // Other pages...
