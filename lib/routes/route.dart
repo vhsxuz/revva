@@ -10,7 +10,7 @@ abstract class Routes {
   static const LOGIN = '/login';
   static const FORGOTPASSWORD = '/forgot-password';
   static const REGISTER = '/register';
-  static const NEWS = 'news';
+  static const NEWS = '/news';
   // Other pages...
 }
 

@@ -1,13 +1,14 @@
 import 'package:get/get.dart';
 import 'package:dio/dio.dart';
 import 'package:revva/models/news_model.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class NewsController extends GetxController {
   var newsList = <Article>[].obs;
   var isLoading = true.obs;
   var errorMessage = ''.obs;
 
-  final String apiKey = 'c26d21f1aacb4736ba09148065b95898';
+  final String apiKey = dotenv.env['NEWS_API_KEY'] ?? 'No API Key';
   final String baseUrl = 'https://newsapi.org/v2/everything';
   final Dio dio = Dio();
 
