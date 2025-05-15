@@ -55,20 +55,21 @@ class AppPages {
       page: () => const News(),
       transition: Transition.cupertino,
     ),
-      name: Routes.ERRORPAGE, 
+    GetPage(
+      name: Routes.ERRORPAGE,
       page: () => ErrorPage(),
       transition: Transition.cupertino,
     ),
     GetPage(
-      name: Routes.NOTAVAILABLE, 
+      name: Routes.NOTAVAILABLE,
       page: () => NotAvailablePage(),
       transition: Transition.cupertino,
     ),
     GetPage(
-      name: Routes.PROMOTION, 
+      name: Routes.PROMOTION,
       page: () => PromotionPage(),
       transition: Transition.cupertino,
-    )
+    ),
     // Other pages...
   ];
 }
