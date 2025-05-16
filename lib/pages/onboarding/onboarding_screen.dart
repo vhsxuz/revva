@@ -39,7 +39,7 @@ class OnboardingScreen extends StatelessWidget {
         ),
         onPressed: () {
           if (controller.currentIndex.value == onboardingData.length - 1) {
-            Get.toNamed('/login');  // Navigate to login page
+            Get.toNamed('/market');  // Navigate to login page
           } else {
             controller.nextPage();  // Move to the next page
           }

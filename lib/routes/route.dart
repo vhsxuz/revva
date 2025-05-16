@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:revva/pages/auth/forgot_password_page.dart';
 import 'package:revva/pages/auth/login_page.dart';
+import 'package:revva/pages/markets/market.dart';
 import 'package:revva/pages/news/news.dart';
 import 'package:revva/pages/auth/otp_page.dart';
 import 'package:revva/pages/auth/register_page.dart';
@@ -8,6 +9,7 @@ import 'package:revva/pages/error/error_page.dart';
 import 'package:revva/pages/notavailable/not_available_page.dart';
 import 'package:revva/pages/onboarding/onboarding_screen.dart';
 import 'package:revva/pages/promotion/promotion_page.dart';
+import 'package:revva/pages/referral/referral_page.dart';
 
 abstract class Routes {
   static const ONBOARDING = '/onboarding';
@@ -20,6 +22,8 @@ abstract class Routes {
   static const ERRORPAGE = '/errorpage';
   static const NOTAVAILABLE = '/notavailable';
   static const PROMOTION = '/promotion';
+  static const REFERRAL = '/referral';
+  static const MARKET = '/market';
   // Other pages...
 }
 
@@ -56,6 +60,11 @@ class AppPages {
       transition: Transition.cupertino,
     ),
     GetPage(
+      name: Routes.MARKET,
+      page: () => const Market(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
       name: Routes.ERRORPAGE,
       page: () => ErrorPage(),
       transition: Transition.cupertino,
@@ -68,6 +77,11 @@ class AppPages {
     GetPage(
       name: Routes.PROMOTION,
       page: () => PromotionPage(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: Routes.REFERRAL,
+      page: () => ReferralPage(),
       transition: Transition.cupertino,
     ),
     // Other pages...
