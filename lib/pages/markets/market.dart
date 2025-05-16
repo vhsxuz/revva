@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:revva/controllers/market_controller.dart';
 
-class Market extends StatelessWidget {
-  Market({Key? key}) : super(key: key);
+class Market extends StatefulWidget {
+  const Market({super.key});
 
+  @override
+  State<Market> createState() => _MarketState();
+}
+
+class _MarketState extends State<Market> {
   // Use Get.find to get the controller instance
   final MarketController controller = Get.put(MarketController());
 
