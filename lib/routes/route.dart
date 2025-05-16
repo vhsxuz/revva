@@ -8,6 +8,7 @@ import 'package:revva/pages/error/error_page.dart';
 import 'package:revva/pages/notavailable/not_available_page.dart';
 import 'package:revva/pages/onboarding/onboarding_screen.dart';
 import 'package:revva/pages/promotion/promotion_page.dart';
+import 'package:revva/pages/referral/referral_page.dart';
 
 abstract class Routes {
   static const ONBOARDING = '/onboarding';
@@ -20,6 +21,7 @@ abstract class Routes {
   static const ERRORPAGE = '/errorpage';
   static const NOTAVAILABLE = '/notavailable';
   static const PROMOTION = '/promotion';
+  static const REFERRAL = '/referral';
   // Other pages...
 }
 
@@ -68,6 +70,11 @@ class AppPages {
     GetPage(
       name: Routes.PROMOTION,
       page: () => PromotionPage(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: Routes.REFERRAL,
+      page: () => ReferralPage(),
       transition: Transition.cupertino,
     ),
     // Other pages...
