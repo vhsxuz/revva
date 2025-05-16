@@ -3,11 +3,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:revva/routes/route.dart';
 import 'firebase/firebase_options.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+// import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 
 void main() async {
-  await dotenv.load();
+  // await dotenv.load();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       title: 'Revva',
       debugShowCheckedModeBanner: false,
       // Essential routing configurations:
-      initialRoute: Routes.ONBOARDING,
+      initialRoute: Routes.REFERRAL,
       getPages: AppPages.routes,
       unknownRoute: GetPage(
         name: '/notfound',

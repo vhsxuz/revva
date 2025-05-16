@@ -44,9 +44,9 @@ class _ReferralPageState extends State<ReferralPage> {
 
   Widget invitationText() {
     return Text(
-      "Friend Invitation",
+      "Friends",
       style: TextStyle(
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: FontWeight.w700,
         color: Color(0xFFC1C7CD),
       ),
@@ -69,7 +69,7 @@ class _ReferralPageState extends State<ReferralPage> {
             ),
             child: const Icon(Icons.person, size: 30, color: Color(0xFF747E87)),
           ),
-          const SizedBox(width: 16),
+          const SizedBox(width: 20),
           // Texts (Friend name + Phone number)
           Expanded(
             child: Column(
@@ -79,38 +79,22 @@ class _ReferralPageState extends State<ReferralPage> {
                   "Friend 1",
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 14,
+                    fontSize: 18,
                     fontWeight: FontWeight.w700,
                   ),
+                  softWrap: true,
                 ),
                 SizedBox(height: 4),
                 Text(
                   "+62 898 0931 0091",
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 14,
+                    fontSize: 16,
                     fontWeight: FontWeight.w400,
                   ),
+                  softWrap: true,
                 ),
               ],
-            ),
-          ),
-          // Invite Button
-          Container(
-            width: 71,
-            height: 28,
-            decoration: BoxDecoration(
-              color: const Color(0xFF4280EF),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            alignment: Alignment.center,
-            child: const Text(
-              "Invite",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 12,
-                fontWeight: FontWeight.w400,
-              ),
             ),
           ),
         ],
