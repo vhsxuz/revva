@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:revva/pages/auth/forgot_password_page.dart';
 import 'package:revva/pages/auth/login_page.dart';
+import 'package:revva/pages/home/home_page.dart';
 import 'package:revva/pages/markets/market.dart';
 import 'package:revva/pages/news/news.dart';
 import 'package:revva/pages/auth/otp_page.dart';
@@ -32,6 +33,11 @@ class AppPages {
     GetPage(
       name: Routes.ONBOARDING,
       page: () => OnboardingScreen(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: Routes.HOME,
+      page: () => HomePage(),
       transition: Transition.cupertino,
     ),
     GetPage(
