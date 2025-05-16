@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:revva/pages/auth/forgot_password_page.dart';
 import 'package:revva/pages/auth/login_page.dart';
+import 'package:revva/pages/markets/market.dart';
 import 'package:revva/pages/news/news.dart';
 import 'package:revva/pages/auth/otp_page.dart';
 import 'package:revva/pages/auth/register_page.dart';
@@ -20,6 +21,7 @@ abstract class Routes {
   static const ERRORPAGE = '/errorpage';
   static const NOTAVAILABLE = '/notavailable';
   static const PROMOTION = '/promotion';
+  static const MARKET = '/market';
   // Other pages...
 }
 
@@ -53,6 +55,11 @@ class AppPages {
     GetPage(
       name: Routes.NEWS,
       page: () => const News(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: Routes.MARKET,
+      page: () => const Market(),
       transition: Transition.cupertino,
     ),
     GetPage(
