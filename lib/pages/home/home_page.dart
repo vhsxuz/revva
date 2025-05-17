@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:revva/config/component/appBar/main_app_bar.dart';
 import 'package:revva/config/component/bottomNav/main_bottom_nav.dart';
+import 'package:revva/config/component/totalBalanceCard/total_balance_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -39,181 +40,6 @@ class _HomePageState extends State<HomePage> {
       'priceColor': Color(0xFF34A353),
     },
   ];
-
-  Widget saldoCard() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: const Color(0xFF1B232A),
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Stack(
-          children: [
-            Positioned(
-              left: 100,
-              top: 0,
-              bottom: 0,
-              child: Image.asset(
-                'assets/images/revva_logo_grey_opacity100.png',
-                width: 300,
-                height: 300,
-                opacity: const AlwaysStoppedAnimation<double>(0.1),
-                fit: BoxFit.cover,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            'Balance total',
-                            style: TextStyle(
-                              color: const Color(0xFF777777),
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          const SizedBox(width: 6),
-                          GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                isVisible = !isVisible;
-                              });
-                            },
-                            child: Icon(
-                              isVisible
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                              size: 14,
-                              color: const Color(0xFF777777),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const Spacer(),
-                      Container(
-                        width: 80,
-                        height: 22,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF2F3C47),
-                          borderRadius: BorderRadius.circular(999),
-                        ),
-                        padding: const EdgeInsets.symmetric(horizontal: 4),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'History',
-                              style: TextStyle(
-                                color: const Color(0xFF777777),
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            const SizedBox(width: 2),
-                            Icon(
-                              Icons.chevron_right,
-                              size: 12,
-                              color: const Color(0xFF777777),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 15),
-                  Row(
-                    children: [
-                      Baseline(
-                        baseline: 15,
-                        baselineType: TextBaseline.alphabetic,
-                        child: Text(
-                          'Rp',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 10,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 4),
-                      Baseline(
-                        baseline: 24,
-                        baselineType: TextBaseline.alphabetic,
-                        child: Text(
-                          isVisible ? '24.000.000' : '*******',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 24,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 30),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.info_outline,
-                        size: 10,
-                        color: Color(0xFF777777),
-                      ),
-                      const SizedBox(width: 6),
-                      Text(
-                        'Daily Income : Rp 348.000',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  const Divider(
-                    color: Color(0xFF777777),
-                    thickness: 1,
-                    height: 1,
-                  ),
-                  const SizedBox(height: 6),
-                  Center(
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          'View Details',
-                          style: TextStyle(
-                            color: Color(0xFF777777),
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                        const SizedBox(width: 4),
-                        Icon(
-                          Icons.keyboard_arrow_down,
-                          size: 12,
-                          color: Color(0xFF777777),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 
   Widget menu() {
     return Padding(
@@ -396,7 +222,7 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 children: [
                   const SizedBox(height: 20),
-                  saldoCard(),
+                  const TotalBalanceCard(),
                   const SizedBox(height: 20),
                   menu(),
                   const SizedBox(height: 20),
