@@ -388,22 +388,27 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: const Color(0XFFF4F4F4),
       appBar: const MainAppBar(),
-      body: Stack(
+      body: Column(
         children: [
-          SingleChildScrollView(
-            padding: const EdgeInsets.only(bottom: 100),
-            child: Column(
-              children: [
-                const SizedBox(height: 20),
-                saldoCard(),
-                const SizedBox(height: 20),
-                menu(),
-                const SizedBox(height: 20),
-                transactionHistories(),
-              ],
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.only(bottom: 100),
+              child: Column(
+                children: [
+                  const SizedBox(height: 20),
+                  saldoCard(),
+                  const SizedBox(height: 20),
+                  menu(),
+                  const SizedBox(height: 20),
+                  transactionHistories(),
+                ],
+              ),
             ),
           ),
-          MainBottomNav(),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: MainBottomNav(),
+          ),
         ],
       ),
     );
