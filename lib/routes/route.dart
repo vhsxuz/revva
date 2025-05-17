@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:revva/pages/auth/forgot_password_page.dart';
 import 'package:revva/pages/auth/login_page.dart';
+import 'package:revva/pages/history/history_page.dart';
 import 'package:revva/pages/markets/market.dart';
 import 'package:revva/pages/news/news.dart';
 import 'package:revva/pages/auth/otp_page.dart';
@@ -24,6 +25,7 @@ abstract class Routes {
   static const PROMOTION = '/promotion';
   static const REFERRAL = '/referral';
   static const MARKET = '/market';
+  static const HISTORY = '/history';
   // Other pages...
 }
 
@@ -82,6 +84,11 @@ class AppPages {
     GetPage(
       name: Routes.REFERRAL,
       page: () => ReferralPage(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: Routes.HISTORY,
+      page: () => HistoryPage(),
       transition: Transition.cupertino,
     ),
     // Other pages...
