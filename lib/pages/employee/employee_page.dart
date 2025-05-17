@@ -43,6 +43,123 @@ class _EmployeePageState extends State<EmployeePage> {
     },
   ];
 
+  Widget employeeList() {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(40),
+      ),
+      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+      child: Column(
+        children:
+            employees.map((employee) {
+              final bool isActive = employee['status'] == 'Active';
+              return Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 15),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 48,
+                          height: 49,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFD9D9D9),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: const Center(
+                            child: Icon(
+                              Icons.person,
+                              size: 30,
+                              color: Color(0xFF747E87),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      employee['name'] ?? '',
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 8,
+                                    ),
+                                    height: 18,
+                                    decoration: BoxDecoration(
+                                      color:
+                                          isActive
+                                              ? const Color(0xFFB5FFE3)
+                                              : const Color(0xFFFFE59A),
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      employee['status'] ?? '',
+                                      style: TextStyle(
+                                        color:
+                                            isActive
+                                                ? const Color(0xFF0D704A)
+                                                : Colors.grey[600],
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                employee['position'] ?? '',
+                                style: const TextStyle(
+                                  color: Color(0xFF777777),
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        IconButton(
+                          icon: const Icon(
+                            Icons.phone,
+                            size: 20,
+                            color: Color(0xFF777777),
+                          ),
+                          onPressed: () {
+                            print('Call ${employee['phoneNumber']}');
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 60),
+                    child: Divider(
+                      color: Color(0xFFE5E5E5),
+                      thickness: 0.5,
+                      height: 1,
+                    ),
+                  ),
+                ],
+              );
+            }).toList(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,144 +186,7 @@ class _EmployeePageState extends State<EmployeePage> {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(40),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 16,
-                        horizontal: 20,
-                      ),
-                      child: Column(
-                        children:
-                            employees.map((employee) {
-                              final bool isActive =
-                                  employee['status'] == 'Active';
-                              return Column(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 15,
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          width: 48,
-                                          height: 49,
-                                          decoration: BoxDecoration(
-                                            color: const Color(0xFFD9D9D9),
-                                            borderRadius: BorderRadius.circular(
-                                              8,
-                                            ),
-                                          ),
-                                          child: const Center(
-                                            child: Icon(
-                                              Icons.person,
-                                              size: 30,
-                                              color: Color(0xFF747E87),
-                                            ),
-                                          ),
-                                        ),
-                                        const SizedBox(width: 12),
-                                        Expanded(
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  Expanded(
-                                                    child: Text(
-                                                      employee['name'] ?? '',
-                                                      style: const TextStyle(
-                                                        color: Colors.black,
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    padding:
-                                                        const EdgeInsets.symmetric(
-                                                          horizontal: 8,
-                                                        ),
-                                                    height: 18,
-                                                    decoration: BoxDecoration(
-                                                      color:
-                                                          isActive
-                                                              ? const Color(
-                                                                0xFFB5FFE3,
-                                                              )
-                                                              : const Color(
-                                                                0xFFFFE59A,
-                                                              ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                            4,
-                                                          ),
-                                                    ),
-                                                    alignment: Alignment.center,
-                                                    child: Text(
-                                                      employee['status'] ?? '',
-                                                      style: TextStyle(
-                                                        color:
-                                                            isActive
-                                                                ? const Color(
-                                                                  0xFF0D704A,
-                                                                )
-                                                                : Colors
-                                                                    .grey[600],
-                                                        fontSize: 10,
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              const SizedBox(height: 4),
-                                              Text(
-                                                employee['position'] ?? '',
-                                                style: const TextStyle(
-                                                  color: Color(0xFF777777),
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w400,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        IconButton(
-                                          icon: const Icon(
-                                            Icons.phone,
-                                            size: 20,
-                                            color: Color(0xFF777777),
-                                          ),
-                                          onPressed: () {
-                                            print(
-                                              'Call ${employee['phoneNumber']}',
-                                            );
-                                          },
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  const Padding(
-                                    padding: EdgeInsets.only(left: 60),
-                                    child: Divider(
-                                      color: Color(0xFFE5E5E5),
-                                      thickness: 0.5,
-                                      height: 1,
-                                    ),
-                                  ),
-                                ],
-                              );
-                            }).toList(),
-                      ),
-                    ),
+                    employeeList(),
                     const SizedBox(height: 16),
                   ],
                 ),
