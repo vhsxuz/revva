@@ -46,12 +46,13 @@ class ProductPage extends StatelessWidget {
                     ),
                     Expanded(
                       child: GridView.builder(
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 16,
-                          mainAxisSpacing: 16,
-                          childAspectRatio: 0.82,
-                        ),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 16,
+                              mainAxisSpacing: 16,
+                              childAspectRatio: 0.79,
+                            ),
                         itemCount: menuController.menuList.length,
                         itemBuilder: (context, index) {
                           final menu = menuController.menuList[index];
@@ -66,7 +67,7 @@ class ProductPage extends StatelessWidget {
                             },
                             child: Card(
                               elevation: 1,
-                              shadowColor: Colors.grey[100], 
+                              shadowColor: Colors.grey[100],
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
@@ -92,7 +93,11 @@ class ProductPage extends StatelessWidget {
                                       child: Image.asset(
                                         _getMenuImage(menu.name),
                                         fit: BoxFit.cover,
-                                        errorBuilder: (context, error, stackTrace) {
+                                        errorBuilder: (
+                                          context,
+                                          error,
+                                          stackTrace,
+                                        ) {
                                           return Center(
                                             child: Icon(
                                               Icons.fastfood,
@@ -107,7 +112,8 @@ class ProductPage extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.all(12.0),
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           menu.name,
@@ -129,7 +135,7 @@ class ProductPage extends StatelessWidget {
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                         ),
-                                        const SizedBox(height: 10),
+                                        const SizedBox(height: 4),
                                         Text(
                                           'Rp ${menu.price}',
                                           style: const TextStyle(
@@ -137,6 +143,24 @@ class ProductPage extends StatelessWidget {
                                             fontWeight: FontWeight.w700,
                                             color: Colors.black,
                                           ),
+                                        ),
+                                        const SizedBox(height: 4),
+                                        Row(
+                                          children: [
+                                            const Icon(
+                                              Icons
+                                                  .star_rounded, // Ikon rounded (bulat)
+                                              color: Colors.amber,
+                                              size: 16,
+                                            ),
+                                            const SizedBox(width: 5),
+                                            Text(
+                                              '${menu.rating}',
+                                              style: const TextStyle(
+                                                fontSize: 14,
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ],
                                     ),

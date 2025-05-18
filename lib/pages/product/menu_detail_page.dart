@@ -84,34 +84,76 @@ class _MenuDetailPageState extends State<MenuDetailPage> {
                 ),
               ),
               const SizedBox(height: 16),
-              Text(menu.name, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-              Text(menu.menuCategory.name, style: const TextStyle(fontSize: 16, color: Colors.grey)),
+              Text(
+                menu.name,
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(
+                menu.menuCategory.name,
+                style: const TextStyle(fontSize: 16, color: Colors.grey),
+              ),
               const SizedBox(height: 8),
-              Text('Rp ${NumberFormat('#,###').format(menu.price)}', style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              Text(
+                'Rp ${NumberFormat('#,###').format(menu.price)}',
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               const SizedBox(height: 8),
               Row(
                 children: [
-                  const Icon(Icons.star, color: Colors.amber),
+                  const Icon(
+                    Icons.star_rounded, // Ikon rounded (bulat)
+                    color: Colors.amber,
+                  ),
                   const SizedBox(width: 4),
                   Text('${menu.rating}', style: const TextStyle(fontSize: 16)),
                 ],
               ),
               const Divider(height: 32),
-              const Text('Description', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              const Text(
+                'Description',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
               const SizedBox(height: 8),
               Text(menu.description),
               const Divider(height: 32),
-              const Text('Business Info', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              const Text(
+                'Business Info',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
               const SizedBox(height: 8),
-              _buildInfoRow('Production Cost', 'Rp ${NumberFormat('#,###').format(menu.productionCost)}'),
-              _buildInfoRow('Margin', 'Rp ${NumberFormat('#,###').format(menu.margin)}'),
-              _buildInfoRow('Monthly Revenue', 'Rp ${NumberFormat('#,###').format(menu.monthlyRevenue)}'),
-              _buildInfoRow('Monthly Profit', 'Rp ${NumberFormat('#,###').format(menu.monthlyProfit)}'),
+              _buildInfoRow(
+                'Production Cost',
+                'Rp ${NumberFormat('#,###').format(menu.productionCost)}',
+              ),
+              _buildInfoRow(
+                'Margin',
+                'Rp ${NumberFormat('#,###').format(menu.margin)}',
+              ),
+              _buildInfoRow(
+                'Monthly Revenue',
+                'Rp ${NumberFormat('#,###').format(menu.monthlyRevenue)}',
+              ),
+              _buildInfoRow(
+                'Monthly Profit',
+                'Rp ${NumberFormat('#,###').format(menu.monthlyProfit)}',
+              ),
               const Divider(height: 32),
-              const Text('Inventory & Operations', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              const Text(
+                'Inventory & Operations',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
               const SizedBox(height: 8),
               _buildInfoRow('Stock Available', '${menu.stockServing} servings'),
-              _buildInfoRow('Preparation Time', '${menu.prepTimeMinutes} minutes'),
+              _buildInfoRow(
+                'Preparation Time',
+                '${menu.prepTimeMinutes} minutes',
+              ),
               _buildInfoRow('Last Restocked', dateFormat.format(lastRestocked)),
             ],
           ),
