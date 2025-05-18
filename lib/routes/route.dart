@@ -3,6 +3,8 @@
 import 'package:get/get.dart';
 import 'package:revva/pages/auth/forgot_password_page.dart';
 import 'package:revva/pages/auth/login_page.dart';
+import 'package:revva/pages/deposit/deposti_result_page.dart';
+import 'package:revva/pages/deposit/depostit_page.dart';
 import 'package:revva/pages/finance/finance.dart';
 import 'package:revva/pages/history/history_page.dart';
 import 'package:revva/pages/home/home_page.dart';
@@ -31,6 +33,8 @@ abstract class Routes {
   static const MARKET = '/market';
   static const HISTORY = '/history';
   static const FINANCE = '/finance';
+  static const DEPOSIT = '/deposit';
+  static const DEPOSITRESULT = '/depositresult';
   // Other pages...
 }
 
@@ -104,6 +108,16 @@ class AppPages {
     GetPage(
       name: Routes.FINANCE,
       page: () => Finance(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: Routes.DEPOSIT,
+      page: () => DepositPage(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: Routes.DEPOSITRESULT,
+      page: () => DepositResultPage(amount: Get.arguments ?? 0.0),
       transition: Transition.cupertino,
     ),
     // Other pages...
