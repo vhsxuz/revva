@@ -18,7 +18,7 @@ class MainBottomNav extends StatelessWidget {
           children: [
             Icon(
               icon,
-              size: 24,
+              size: 28,
               color:
                   isSelected
                       ? const Color(0xFF4280EF)
@@ -60,11 +60,15 @@ class MainBottomNav extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildNavItem(0, Icons.home, 'Home'),
-              _buildNavItem(1, Icons.archive, 'Items'),
+              _buildNavItem(0, Icons.home_rounded, 'Home'),
+              const SizedBox(width: 24),
+              _buildNavItem(1, Icons.archive_rounded, 'Items'),
+              const SizedBox(width: 24),
               _buildNavItem(2, Icons.person, 'Staff'),
-              _buildNavItem(3, Icons.account_balance_wallet, 'Finance'),
-              _buildNavItem(4, Icons.settings, 'Setting'),
+              const SizedBox(width: 24),
+              _buildNavItem(3, Icons.wallet_rounded, 'Finance'),
+              const SizedBox(width: 24),
+              _buildNavItem(4, Icons.settings_rounded, 'Setting'),
             ],
           ),
         ),

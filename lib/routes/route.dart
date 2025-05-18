@@ -15,6 +15,7 @@ import 'package:revva/pages/notavailable/not_available_page.dart';
 import 'package:revva/pages/onboarding/onboarding_screen.dart';
 import 'package:revva/pages/promotion/promotion_page.dart';
 import 'package:revva/pages/referral/referral_page.dart';
+import 'package:revva/pages/setting/setting.dart';
 
 abstract class Routes {
   static const ONBOARDING = '/onboarding';
@@ -31,6 +32,7 @@ abstract class Routes {
   static const MARKET = '/market';
   static const HISTORY = '/history';
   static const FINANCE = '/finance';
+  static const SETTING = '/setting';
   // Other pages...
 }
 
@@ -104,6 +106,11 @@ class AppPages {
     GetPage(
       name: Routes.FINANCE,
       page: () => Finance(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: Routes.SETTING,
+      page: () => Setting(),
       transition: Transition.cupertino,
     ),
     // Other pages...
