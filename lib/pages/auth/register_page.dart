@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:revva/routes/route.dart';
+import 'package:revva/services/auth_service.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -8,7 +11,8 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
   Widget logoWidget() {
@@ -41,7 +45,27 @@ class _RegisterPageState extends State<RegisterPage> {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           backgroundColor: Colors.white,
         ),
-        onPressed: () {},
+        onPressed: () async {
+          final name = nameController.text.trim();
+          final email = emailController.text.trim();
+          final password = passwordController.text.trim();
+
+          if (name.isEmpty || email.isEmpty || password.isEmpty) {
+            Get.snackbar(
+              'Field Required',
+              'Name, Email and password must not be empty',
+              backgroundColor: Colors.orange,
+              colorText: Colors.white,
+            );
+            return;
+          }
+
+          await AuthService().createUserWithEmailAndPassword(
+            email: email,
+            password: password,
+            name: name,
+          );
+        },
         child: const Text(
           'Sign Up',
           style: TextStyle(color: Color(0xff1B232A)),
@@ -72,7 +96,9 @@ class _RegisterPageState extends State<RegisterPage> {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           backgroundColor: Colors.white,
         ),
-        onPressed: () {},
+        onPressed: () async {
+          await AuthService().signInWithGoogle();
+        },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -110,6 +136,9 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
         const SizedBox(width: 2),
         GestureDetector(
+          onTap: () {
+            Get.toNamed(Routes.LOGIN);
+          },
           child: const Text(
             'Sign In',
             style: TextStyle(
@@ -134,10 +163,8 @@ class _RegisterPageState extends State<RegisterPage> {
               logoWidget(),
               titleText(),
               const SizedBox(height: 20),
-              CustomTextFormField(
-                label: "Username",
-                controller: usernameController,
-              ),
+              CustomTextFormField(label: "Name", controller: nameController),
+              CustomTextFormField(label: "Email", controller: emailController),
               CustomTextFormField(
                 label: "Password",
                 controller: passwordController,
@@ -170,7 +197,9 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     IconData? icon;
-    if (label.toLowerCase().contains("username")) {
+    if (label.toLowerCase().contains("name")) {
+      icon = Icons.person_outline;
+    } else if (label.toLowerCase().contains("email")) {
       icon = Icons.person;
     } else if (label.toLowerCase().contains("password")) {
       icon = Icons.shield;
