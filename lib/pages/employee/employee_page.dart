@@ -187,15 +187,20 @@ class _EmployeePageState extends State<EmployeePage> {
                   children: [
                     const SizedBox(height: 16),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Row(
                         children: [
-                          const SearchForm(),
+                          Expanded(child: SearchForm()),
                           const SizedBox(width: 8),
-                          addButton(context),
+                          SizedBox(
+                            width: 35,
+                            height: 35,
+                            child: addButton(context),
+                          ),
                         ],
                       ),
                     ),
+
                     const SizedBox(height: 16),
                     employeeList(),
                     const SizedBox(height: 16),
@@ -220,7 +225,6 @@ class SearchForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 308,
       height: 35,
       padding: const EdgeInsets.symmetric(horizontal: 12),
       decoration: BoxDecoration(
