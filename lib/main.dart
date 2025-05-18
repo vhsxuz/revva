@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       title: 'Revva',
       debugShowCheckedModeBanner: false,
       // Essential routing configurations:
-      initialRoute: Routes.ONBOARDING,
+      initialRoute: Routes.LOGIN,
       getPages: AppPages.routes,
       unknownRoute: GetPage(
         name: '/notfound',

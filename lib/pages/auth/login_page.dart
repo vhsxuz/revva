@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:revva/routes/route.dart';
+import 'package:revva/services/auth_service.dart';
+import 'package:get/get.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -8,7 +11,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
   Widget logoWidget() {
@@ -52,7 +55,18 @@ class _LoginPageState extends State<LoginPage> {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           backgroundColor: Colors.white,
         ),
-        onPressed: () {},
+        onPressed: () {
+          AuthService()
+              .signInWithEmailAndPassword(
+                email: emailController.text,
+                password: passwordController.text,
+              )
+              .then((value) {
+                if (value != null) {
+                  Get.offAllNamed(Routes.HOME);
+                }
+              });
+        },
         child: const Text(
           'Sign In',
           style: TextStyle(color: Color(0xff1B232A)),
@@ -83,7 +97,9 @@ class _LoginPageState extends State<LoginPage> {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           backgroundColor: Colors.white,
         ),
-        onPressed: () {},
+        onPressed: () async {
+          await AuthService().signInWithGoogle();
+        },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -121,6 +137,9 @@ class _LoginPageState extends State<LoginPage> {
         ),
         const SizedBox(width: 2),
         GestureDetector(
+          onTap: () {
+            Get.toNamed(Routes.REGISTER);
+          },
           child: const Text(
             'Register',
             style: TextStyle(
@@ -145,10 +164,7 @@ class _LoginPageState extends State<LoginPage> {
               logoWidget(),
               titleText(),
               const SizedBox(height: 20),
-              CustomTextFormField(
-                label: "Username",
-                controller: usernameController,
-              ),
+              CustomTextFormField(label: "Email", controller: emailController),
               CustomTextFormField(
                 label: "Password",
                 controller: passwordController,
@@ -183,7 +199,7 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     IconData? icon;
-    if (label.toLowerCase().contains("username")) {
+    if (label.toLowerCase().contains("email")) {
       icon = Icons.person;
     } else if (label.toLowerCase().contains("password")) {
       icon = Icons.shield;
