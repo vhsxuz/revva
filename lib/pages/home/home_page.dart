@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:revva/config/component/appBar/main_app_bar.dart';
 import 'package:revva/config/component/bottomNav/main_bottom_nav.dart';
 import 'package:revva/config/component/totalBalanceCard/total_balance_card.dart';
+import 'package:revva/controllers/total_balance_card_controller.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -249,6 +251,8 @@ class _IconWithText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(TotalBalanceCardController());
+    
     return SizedBox(
       width: 80,
       child: Column(

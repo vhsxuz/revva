@@ -7,6 +7,7 @@ class TotalBalanceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(TotalBalanceCardController());
     final controller = Get.find<TotalBalanceCardController>();
 
     return Padding(

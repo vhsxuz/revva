@@ -20,6 +20,7 @@ import 'package:revva/pages/product/product_page.dart';
 import 'package:revva/pages/product/menu_detail_page.dart';
 import 'package:revva/pages/promotion/promotion_page.dart';
 import 'package:revva/pages/referral/referral_page.dart';
+import 'package:revva/pages/setting/setting.dart';
 
 abstract class Routes {
   static const ONBOARDING = '/onboarding';
@@ -41,6 +42,7 @@ abstract class Routes {
   static const PRODUCT = '/product';
   static const MENUDETAIL = '/menudetail';
   static const EMPLOYEE = '/employee';
+  static const SETTING = '/setting';
   // Other pages...
 }
 
@@ -139,6 +141,11 @@ class AppPages {
     GetPage(
       name: Routes.EMPLOYEE,
       page: () => EmployeePage(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: Routes.SETTING,
+      page: () => Setting(),
       transition: Transition.cupertino,
     ),
     // Other pages...
