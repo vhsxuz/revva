@@ -7,6 +7,7 @@ import 'package:revva/pages/deposit/deposti_result_page.dart';
 import 'package:revva/pages/deposit/depostit_page.dart';
 import 'package:revva/pages/finance/finance.dart';
 import 'package:revva/pages/history/history_page.dart';
+import 'package:revva/pages/employee/employee_page.dart';
 import 'package:revva/pages/home/home_page.dart';
 import 'package:revva/pages/markets/market.dart';
 import 'package:revva/pages/news/news.dart';
@@ -39,6 +40,7 @@ abstract class Routes {
   static const DEPOSITRESULT = '/depositresult';
   static const PRODUCT = '/product';
   static const MENUDETAIL = '/menudetail';
+  static const EMPLOYEE = '/employee';
   // Other pages...
 }
 
@@ -132,6 +134,11 @@ class AppPages {
     GetPage(
       name: Routes.MENUDETAIL,
       page: () => MenuDetailPage(), // Constructor tanpa parameter
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: Routes.EMPLOYEE,
+      page: () => EmployeePage(),
       transition: Transition.cupertino,
     ),
     // Other pages...
