@@ -15,6 +15,8 @@ import 'package:revva/pages/auth/register_page.dart';
 import 'package:revva/pages/error/error_page.dart';
 import 'package:revva/pages/notavailable/not_available_page.dart';
 import 'package:revva/pages/onboarding/onboarding_screen.dart';
+import 'package:revva/pages/product/product_page.dart';
+import 'package:revva/pages/product/menu_detail_page.dart';
 import 'package:revva/pages/promotion/promotion_page.dart';
 import 'package:revva/pages/referral/referral_page.dart';
 
@@ -35,6 +37,8 @@ abstract class Routes {
   static const FINANCE = '/finance';
   static const DEPOSIT = '/deposit';
   static const DEPOSITRESULT = '/depositresult';
+  static const PRODUCT = '/product';
+  static const MENUDETAIL = '/menudetail';
   // Other pages...
 }
 
@@ -118,6 +122,16 @@ class AppPages {
     GetPage(
       name: Routes.DEPOSITRESULT,
       page: () => DepositResultPage(amount: Get.arguments ?? 0.0),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: Routes.PRODUCT,
+      page: () => ProductPage(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: Routes.MENUDETAIL,
+      page: () => MenuDetailPage(), // Constructor tanpa parameter
       transition: Transition.cupertino,
     ),
     // Other pages...
