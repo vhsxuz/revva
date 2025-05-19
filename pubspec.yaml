@@ -73,11 +73,7 @@ flutter:
   assets:
     - .env
     - assets/images/
-<<<<<<< HEAD
     - assets/icons/
-=======
-    - assets/images/menu/
->>>>>>> pre-uat
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:revva/controllers/onboarding_controller.dart';
+import 'package:revva/routes/route.dart';
 
 class OnboardingScreen extends StatelessWidget {
   OnboardingScreen({super.key});
@@ -39,9 +40,9 @@ class OnboardingScreen extends StatelessWidget {
         ),
         onPressed: () {
           if (controller.currentIndex.value == onboardingData.length - 1) {
-            Get.toNamed('/setting');  // Navigate to login page
+            Get.toNamed(Routes.LOGIN); // Navigate to login page
           } else {
-            controller.nextPage();  // Move to the next page
+            controller.nextPage(); // Move to the next page
           }
         },
         child: Padding(

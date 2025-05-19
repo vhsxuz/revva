@@ -13,19 +13,19 @@ class BottomNavController extends GetxController {
         break;
       case 1:
         //add Get Route
-        print(index);
+        Get.toNamed(Routes.PRODUCT);
         break;
       case 2:
         //add Get Route
-        print(index);
+        Get.toNamed(Routes.EMPLOYEE);
         break;
       case 3:
         //add Get Route
-        print(index);
+        Get.toNamed(Routes.FINANCE);
         break;
       case 4:
         //add Get Route
-        print(index);
+        Get.toNamed(Routes.SETTING);
         break;
     }
   }

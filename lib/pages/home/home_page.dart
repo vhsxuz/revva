@@ -4,6 +4,7 @@ import 'package:revva/config/component/appBar/main_app_bar.dart';
 import 'package:revva/config/component/bottomNav/main_bottom_nav.dart';
 import 'package:revva/config/component/totalBalanceCard/total_balance_card.dart';
 import 'package:revva/controllers/total_balance_card_controller.dart';
+import 'package:revva/routes/route.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -57,33 +58,69 @@ class _HomePageState extends State<HomePage> {
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
+              children: [
                 _IconWithText(
                   icon: Icons.file_download_outlined,
                   label: 'Deposit',
+                  onTap: () {
+                    Get.toNamed(Routes.DEPOSIT);
+                  },
                 ),
                 _IconWithText(
                   icon: Icons.inventory_2_outlined,
                   label: 'Products',
+                  onTap: () {
+                    Get.toNamed(Routes.PRODUCT);
+                  },
                 ),
                 _IconWithText(
                   icon: Icons.account_balance_wallet_outlined,
                   label: 'Financial',
+                  onTap: () {
+                    Get.toNamed(Routes.FINANCE);
+                  },
                 ),
                 _IconWithText(
                   icon: Icons.person_add_alt_1_outlined,
                   label: 'Referral',
+                  onTap: () {
+                    Get.toNamed(Routes.REFERRAL);
+                  },
                 ),
               ],
             ),
             const SizedBox(height: 30),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
-                _IconWithText(icon: Icons.people_outline, label: 'Employee'),
-                _IconWithText(icon: Icons.bar_chart, label: 'Markets'),
-                _IconWithText(icon: Icons.description_outlined, label: 'News'),
-                _IconWithText(icon: Icons.menu, label: 'More'),
+              children: [
+                _IconWithText(
+                  icon: Icons.people_outline,
+                  label: 'Employee',
+                  onTap: () {
+                    Get.toNamed(Routes.EMPLOYEE);
+                  },
+                ),
+                _IconWithText(
+                  icon: Icons.bar_chart,
+                  label: 'Markets',
+                  onTap: () {
+                    Get.toNamed(Routes.MARKET);
+                  },
+                ),
+                _IconWithText(
+                  icon: Icons.description_outlined,
+                  label: 'News',
+                  onTap: () {
+                    Get.toNamed(Routes.NEWS);
+                  },
+                ),
+                _IconWithText(
+                  icon: Icons.menu,
+                  label: 'More',
+                  onTap: () {
+                    Get.toNamed(Routes.SETTING);
+                  },
+                ),
               ],
             ),
           ],
@@ -215,7 +252,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0XFFF4F4F4),
-      appBar: const MainAppBar(),
+      appBar: MainAppBar(),
       body: Column(
         children: [
           Expanded(
@@ -246,29 +283,35 @@ class _HomePageState extends State<HomePage> {
 class _IconWithText extends StatelessWidget {
   final IconData icon;
   final String label;
+  final VoidCallback? onTap; // Tambahkan onTap
 
-  const _IconWithText({required this.icon, required this.label});
+  const _IconWithText({
+    required this.icon,
+    required this.label,
+    this.onTap, // Inisialisasi di konstruktor
+  });
 
   @override
   Widget build(BuildContext context) {
-    Get.put(TotalBalanceCardController());
-    
-    return SizedBox(
-      width: 80,
-      child: Column(
-        children: [
-          Icon(icon, size: 22, color: Color(0xFF2F3C47)),
-          const SizedBox(height: 6),
-          Text(
-            label,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Color(0xFF2F3C47),
-              fontSize: 12,
-              fontWeight: FontWeight.w400,
+    return GestureDetector(
+      onTap: onTap, // Gunakan GestureDetector untuk menangani tap
+      child: SizedBox(
+        width: 80,
+        child: Column(
+          children: [
+            Icon(icon, size: 22, color: Color(0xFF2F3C47)),
+            const SizedBox(height: 6),
+            Text(
+              label,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Color(0xFF2F3C47),
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

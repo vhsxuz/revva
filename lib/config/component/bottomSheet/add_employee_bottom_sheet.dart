@@ -1,6 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:revva/controllers/employee_controller.dart';
+import 'package:revva/controllers/employee_form_controller.dart';
 
 void showAddEmployeeBottomSheet(BuildContext context) {
+  final EmployeeFormController formController = Get.put(
+    EmployeeFormController(),
+  );
+  final EmployeeController employeeController = Get.find();
+
+  void submitForm() async {
+    if (formController.name.isEmpty ||
+        formController.phoneNumber.isEmpty ||
+        formController.selectedPositionId.isEmpty ||
+        formController.selectedStatusId.isEmpty) {
+      Get.snackbar(
+        'Error',
+        'Please fill all fields',
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+      return;
+    }
+
+    try {
+      await employeeController.createEmployee(
+        name: formController.name.value,
+        phoneNumber: formController.phoneNumber.value,
+        employeePositionId: formController.selectedPositionId.value,
+        employeeStatusId: formController.selectedStatusId.value,
+      );
+      formController.resetForm();
+      Get.back();
+      Get.snackbar(
+        'Success',
+        'Employee added successfully',
+        backgroundColor: Colors.green,
+        colorText: Colors.white,
+      );
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        'Failed to add employee: $e',
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
+  }
+
   showModalBottomSheet(
     context: context,
     backgroundColor: const Color(0xFF2F3C47),
@@ -60,9 +107,10 @@ void showAddEmployeeBottomSheet(BuildContext context) {
                 ),
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 alignment: Alignment.centerLeft,
-                child: const TextField(
-                  style: TextStyle(color: Colors.black),
-                  decoration: InputDecoration.collapsed(
+                child: TextField(
+                  onChanged: formController.setName,
+                  style: const TextStyle(color: Colors.black),
+                  decoration: const InputDecoration.collapsed(
                     hintText: 'Enter name',
                     hintStyle: TextStyle(color: Colors.black54),
                   ),
@@ -88,15 +136,21 @@ void showAddEmployeeBottomSheet(BuildContext context) {
                 ),
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 child: Row(
-                  children: const [
-                    Text('+62', style: TextStyle(color: Colors.black)),
-                    SizedBox(width: 4),
-                    Icon(Icons.expand_more, size: 12, color: Color(0xFF1B232A)),
-                    SizedBox(width: 8),
+                  children: [
+                    const Text('+62', style: TextStyle(color: Colors.black)),
+                    const SizedBox(width: 4),
+                    const Icon(
+                      Icons.expand_more,
+                      size: 12,
+                      color: Color(0xFF1B232A),
+                    ),
+                    const SizedBox(width: 8),
                     Expanded(
                       child: TextField(
-                        style: TextStyle(color: Colors.black),
-                        decoration: InputDecoration.collapsed(
+                        onChanged: formController.setPhoneNumber,
+                        keyboardType: TextInputType.phone,
+                        style: const TextStyle(color: Colors.black),
+                        decoration: const InputDecoration.collapsed(
                           hintText: '81234567890',
                           hintStyle: TextStyle(color: Colors.black54),
                         ),
@@ -117,26 +171,86 @@ void showAddEmployeeBottomSheet(BuildContext context) {
                 ),
               ),
               const SizedBox(height: 6),
-              Container(
-                height: 36,
-                width: double.infinity,
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text(
-                      'Select position',
-                      style: TextStyle(color: Colors.black54),
+              GestureDetector(
+                onTap: () => _showPositionDropdown(context, formController),
+                child: Obx(
+                  () => Container(
+                    height: 36,
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8),
                     ),
-                    Icon(Icons.expand_more, size: 12, color: Color(0xFF1B232A)),
-                  ],
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          formController.getSelectedPositionName() ??
+                              'Select position',
+                          style: TextStyle(
+                            color:
+                                formController.selectedPositionId.isEmpty
+                                    ? Colors.black54
+                                    : Colors.black,
+                          ),
+                        ),
+                        const Icon(
+                          Icons.expand_more,
+                          size: 12,
+                          color: Color(0xFF1B232A),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
+              const SizedBox(height: 16),
 
+              // Status Field
+              const Text(
+                'Status',
+                style: TextStyle(
+                  color: Color(0xFFC1C7CD),
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              const SizedBox(height: 6),
+              GestureDetector(
+                onTap: () => _showStatusDropdown(context, formController),
+                child: Obx(
+                  () => Container(
+                    height: 36,
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          formController.getSelectedStatusName() ??
+                              'Select status',
+                          style: TextStyle(
+                            color:
+                                formController.selectedStatusId.isEmpty
+                                    ? Colors.black54
+                                    : Colors.black,
+                          ),
+                        ),
+                        const Icon(
+                          Icons.expand_more,
+                          size: 12,
+                          color: Color(0xFF1B232A),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
               const SizedBox(height: 24),
 
               // Submit Button
@@ -144,7 +258,7 @@ void showAddEmployeeBottomSheet(BuildContext context) {
                 width: double.infinity,
                 height: 40,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: submitForm,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF4280EF),
                     shape: RoundedRectangleBorder(
@@ -164,6 +278,116 @@ void showAddEmployeeBottomSheet(BuildContext context) {
               ),
             ],
           ),
+        ),
+      );
+    },
+  );
+}
+
+void _showPositionDropdown(
+  BuildContext context,
+  EmployeeFormController controller,
+) {
+  showModalBottomSheet(
+    context: context,
+    backgroundColor: Colors.white,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+    ),
+    builder: (context) {
+      return SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Select Position',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.close),
+                    onPressed: () => Navigator.pop(context),
+                  ),
+                ],
+              ),
+            ),
+            Divider(height: 1, color: Colors.grey[300]),
+            Expanded(
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: controller.positionOptions.length,
+                itemBuilder: (context, index) {
+                  final position = controller.positionOptions[index];
+                  return ListTile(
+                    title: Text(position['name']!),
+                    onTap: () {
+                      controller.setPosition(position['id']!);
+                      Navigator.pop(context);
+                    },
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      );
+    },
+  );
+}
+
+void _showStatusDropdown(
+  BuildContext context,
+  EmployeeFormController controller,
+) {
+  showModalBottomSheet(
+    context: context,
+    backgroundColor: Colors.white,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+    ),
+    builder: (context) {
+      return SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Select Status',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.close),
+                    onPressed: () => Navigator.pop(context),
+                  ),
+                ],
+              ),
+            ),
+            Divider(height: 1, color: Colors.grey[300]),
+            Expanded(
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: controller.statusOptions.length,
+                itemBuilder: (context, index) {
+                  final status = controller.statusOptions[index];
+                  return ListTile(
+                    title: Text(status['name']!),
+                    onTap: () {
+                      controller.setStatus(status['id']!);
+                      Navigator.pop(context);
+                    },
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       );
     },
