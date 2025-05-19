@@ -25,7 +25,7 @@ class _SettingState extends State<Setting> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF1B232A),
-      appBar: const SettingAppBar(),
+      appBar: SettingAppBar(),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 12),
         child: Column(

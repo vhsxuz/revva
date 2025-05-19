@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:revva/controllers/user_contoller.dart';
+import 'package:get/get.dart';
 
 class SettingAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const SettingAppBar({super.key});
+  SettingAppBar({super.key});
+  final UserController userController = Get.put(UserController());
 
-  final String userId = '1234567890';
+  // final String userId = '1234567890';
 
   @override
   Size get preferredSize => const Size.fromHeight(80);
@@ -45,42 +48,51 @@ class SettingAppBar extends StatelessWidget implements PreferredSizeWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Andreas Alexander',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          'ID: $userId',
-                          style: const TextStyle(
-                            color: Colors.grey,
-                            fontSize: 12,
-                          ),
+                    Obx(() {
+                      final name = userController.user.value?.name ?? 'User';
+                      return Text(
+                        name,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
                         ),
-                        const SizedBox(width: 4),
-                        GestureDetector(
-                          onTap: () {
-                            Clipboard.setData(ClipboardData(text: userId));
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('ID copied to clipboard'),
-                                duration: Duration(seconds: 1),
-                              ),
-                            );
-                          },
-                          child: SvgPicture.asset(
-                            'assets/icons/copy.svg',
-                            width: 16,
-                            height: 16,
+                      );
+                    }),
+                    Obx(() {
+                      final referralCode =
+                          userController.user.value?.referral_code ?? '-';
+                      return Row(
+                        children: [
+                          Text(
+                            'ID: $referralCode',
+                            style: const TextStyle(
+                              color: Colors.grey,
+                              fontSize: 12,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
+                          const SizedBox(width: 4),
+                          GestureDetector(
+                            onTap: () {
+                              Clipboard.setData(
+                                ClipboardData(text: referralCode),
+                              );
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('ID copied to clipboard'),
+                                  duration: Duration(seconds: 1),
+                                ),
+                              );
+                            },
+                            child: SvgPicture.asset(
+                              'assets/icons/copy.svg',
+                              width: 16,
+                              height: 16,
+                            ),
+                          ),
+                        ],
+                      );
+                    }),
                   ],
                 ),
               ],
