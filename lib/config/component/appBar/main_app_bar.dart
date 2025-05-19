@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:revva/controllers/user_contoller.dart';
+import 'package:get/get.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const MainAppBar({super.key});
+  MainAppBar({super.key});
+  final UserController userController = Get.put(UserController());
 
   @override
   Size get preferredSize => const Size.fromHeight(80);
@@ -32,8 +35,8 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
                 const SizedBox(width: 12),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                       'Welcome Back',
                       style: TextStyle(
                         color: Color(0xFF777777),
@@ -41,15 +44,18 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
                         fontWeight: FontWeight.w400,
                       ),
                     ),
-                    SizedBox(height: 2),
-                    Text(
-                      'Andreas Alexander',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
+                    const SizedBox(height: 2),
+                    Obx(() {
+                      final name = userController.user.value?.name ?? 'User';
+                      return Text(
+                        name,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      );
+                    }),
                   ],
                 ),
               ],

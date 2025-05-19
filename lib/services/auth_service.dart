@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:revva/models/user_model.dart';
 import 'package:revva/routes/route.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   final _auth = FirebaseAuth.instance;
@@ -22,6 +24,9 @@ class AuthService {
       );
 
       if (credential.user != null) {
+        // Simpan Firebase UID ke SharedPreferences
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('firebase_uid', credential.user!.uid);
         Get.offAllNamed(Routes.HOME);
         Get.snackbar(
           'Login Success',
@@ -69,6 +74,10 @@ class AuthService {
           name: user.displayName ?? 'No Name',
           email: user.email ?? '',
         );
+
+        // Simpan Firebase UID ke SharedPreferences
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('firebase_uid', user.uid);
 
         Get.snackbar(
           'Login Success',
@@ -173,6 +182,32 @@ class AuthService {
         backgroundColor: Colors.red,
         colorText: Colors.white,
       );
+    }
+  }
+
+  Future<UserModel?> getUserByFirebaseUid(String firebaseUid) async {
+    final url = '$_baseUrl/api/v1/user/firebase/$firebaseUid';
+
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final firebaseUid = prefs.getString('firebase_uid');
+
+      if (firebaseUid == null) return null;
+      final response = await _dio.get(url);
+
+      if (response.statusCode == 200 && response.data['data'] != null) {
+        return UserModel.fromJson(response.data['data']);
+      } else {
+        throw Exception('Failed to fetch user data');
+      }
+    } on DioException catch (e) {
+      Get.snackbar(
+        'Fetch User Failed',
+        e.response?.data.toString() ?? e.message ?? 'Unknown error',
+        backgroundColor: Get.theme.colorScheme.error,
+        colorText: Get.theme.colorScheme.onError,
+      );
+      return null;
     }
   }
 }

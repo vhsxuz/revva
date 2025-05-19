@@ -12,7 +12,7 @@ class ProductPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF4F4F4),
-      appBar: const MainAppBar(),
+      appBar: MainAppBar(),
       body: Column(
         children: [
           Expanded(

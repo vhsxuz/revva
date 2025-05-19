@@ -215,7 +215,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0XFFF4F4F4),
-      appBar: const MainAppBar(),
+      appBar: MainAppBar(),
       body: Column(
         children: [
           Expanded(
@@ -252,7 +252,7 @@ class _IconWithText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(TotalBalanceCardController());
-    
+
     return SizedBox(
       width: 80,
       child: Column(

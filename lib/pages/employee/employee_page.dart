@@ -175,7 +175,7 @@ class _EmployeePageState extends State<EmployeePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0XFFF4F4F4),
-      appBar: const MainAppBar(),
+      appBar: MainAppBar(),
       body: SafeArea(
         child: Column(
           children: [
