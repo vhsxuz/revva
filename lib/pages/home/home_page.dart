@@ -237,7 +237,16 @@ class _HomePageState extends State<HomePage> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                Icon(Icons.chevron_right, size: 18, color: Color(0xFF777777)),
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed(Routes.HISTORY);
+                  },
+                  child: Icon(
+                    Icons.chevron_right,
+                    size: 18,
+                    color: Color(0xFF777777),
+                  ),
+                ),
               ],
             ),
             const SizedBox(height: 12),

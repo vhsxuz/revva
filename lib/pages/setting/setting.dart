@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:revva/config/component/appBar/setting_app_bar.dart';
 import 'package:revva/config/component/bottomNav/main_bottom_nav.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:revva/routes/route.dart';
 
 class Setting extends StatefulWidget {
   const Setting({super.key});
@@ -110,7 +112,12 @@ class _SettingState extends State<Setting> {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(16.0),
-                      child: _buildMenuItem('Premium', 'premium'),
+                      child: GestureDetector(
+                        onTap: () {
+                          Get.toNamed(Routes.PROMOTION);
+                        },
+                        child: _buildMenuItem('Premium', 'premium'),
+                      ),
                     ),
                   ],
                 ),

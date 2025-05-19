@@ -190,27 +190,27 @@ class ProductPage extends StatelessWidget {
   String _getMenuImage(String menuName) {
     switch (menuName) {
       case 'Pancake Stack':
-        return "assets/images/menu/pancake_stack.jpg";
+        return "assets/images/menus/pancake_stack.jpg";
       case 'Latte':
-        return "assets/images/menu/latte.jpeg";
+        return "assets/images/s/latte.jpeg";
       case 'Croissant':
-        return "assets/images/menu/croissant.jpg";
+        return "assets/images/menus/croissant.jpg";
       case 'Espresso':
-        return "assets/images/menu/espresso.jpg";
+        return "assets/images/menus/espresso.jpg";
       case 'Cinnamon Roll':
-        return "assets/images/menu/cinnamon_roll.jpg";
+        return "assets/images/menus/cinnamon_roll.jpg";
       case 'Mocha':
-        return "assets/images/menu/mocha.png";
+        return "assets/images/menus/mocha.png";
       case 'Cappuccino':
-        return "assets/images/menu/cappuccino.png";
+        return "assets/images/menus/cappuccino.png";
       case 'Avocado Toast':
-        return "assets/images/menu/avocado_toast.jpg";
+        return "assets/images/menus/avocado_toast.jpg";
       case 'Blueberry Muffin':
-        return "assets/images/menu/blueberry_muffin.jpg";
+        return "assets/images/menus/blueberry_muffin.jpg";
       case 'Luwak White Coffee':
-        return "assets/images/menu/luwak_wc.jpg";
+        return "assets/images/menus/luwak_wc.jpg";
       default:
-        return "assets/images/menu/default.jpg";
+        return "assets/images/menus/default.jpg";
     }
   }
 }
